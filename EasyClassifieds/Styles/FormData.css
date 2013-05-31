@@ -1,0 +1,11 @@
+﻿fieldset div
+{
+    vertical-align:top;
+}
+fieldset div label
+{
+    vertical-align:top;
+    display: inline-block;
+    width:100px;
+    text-align:right;
+}

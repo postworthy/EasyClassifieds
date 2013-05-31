@@ -1,0 +1,8 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="EasyClassifieds.Admin" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link type="text/css" href="<%= Page.ResolveUrl("~/styles/admin.css") %>" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:contentplaceholder id="c" runat="server">
+    </asp:contentplaceholder>
+</asp:Content>

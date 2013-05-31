@@ -1,0 +1,29 @@
+﻿.leftNavigation
+{
+    float:left;
+    width:250px;
+}
+.rightContent
+{
+   float:left;
+   margin-left: 10px;
+   width: 700px;
+}
+.featuredItems div
+{
+    float: left;
+    width: 160px;
+    text-align:center;
+}
+.featuredItems a img
+{
+    margin-left:5px;
+    width:150px;
+    height:150px;
+    clear:both;
+    display: block;
+}
+.itemListing
+{
+   
+}

@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="EasyClassifieds.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title><%= ApplicationTitle  %></title>
+    <%= SiteStyleSheet %>
+    <script src="<%= Page.ResolveUrl("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
+    <meta name="google-site-verification" content="MvcP6ahzHlAxp2r9-5e1hTNQhnbqKstrGiRX6IbUJTs" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="headerContent">
+                <div class="title">
+                    <h1>
+                        
+                        <%= (!string.IsNullOrEmpty(Logo)) ? "<img src=\"" + Logo + "\" alt=\"" + ApplicationTitle + "\"/>" : ApplicationTitle%>
+                    </h1>
+                </div>
+                <div class="loginDisplay">
+                    <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                        <AnonymousTemplate>
+                            [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            Welcome <a runat="server" href="~/shops/manage.aspx"><span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span></a>!<br />
+                            [ <a href="~/Account/ChangePassword.aspx" runat="server">Change Password</a> | <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+            <div class="clear hideSkiplink">
+                <div class="headerContent">
+                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/" Text="Home"/>
+                            <asp:MenuItem NavigateUrl="~/ShopsList.aspx" Text="Shops"/>
+                            <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                            <asp:MenuItem NavigateUrl="~/Account/Register.aspx" Text="Register" />
+                            <asp:MenuItem NavigateUrl="~/Shops/Manage.aspx" Text="My Shop" />
+                            <asp:MenuItem NavigateUrl="~/Admin/Access/access_rules.aspx" Text="Admin" />
+                        </Items>
+                    </asp:Menu>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

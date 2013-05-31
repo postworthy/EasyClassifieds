@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Listing.master.cs"
+    Inherits="EasyClassifieds.Listing" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link href="Styles/Listing.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function search() {
+            window.location = "?s=" + encodeURIComponent($("#<%= txtSearch.ClientID %>").val());
+        }
+
+        function disableEnterKey(e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode; //IE
+            else
+                key = e.which; //firefox
+
+            if (key == 13) search();
+
+            return (key != 13);
+        }
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="leftNavigation">
+        <fieldset>
+            <legend>Search</legend>
+            <asp:TextBox ID="txtSearch" runat="server" onkeypress="return disableEnterKey(event)" />
+            <asp:Button ID="btnSearch" runat="server" UseSubmitBehavior="false" Text="Search"
+                OnClientClick="search();return false;" />
+        </fieldset>
+        <fieldset>
+            <legend>Categories</legend>
+            <asp:Repeater ID="categoryListing" runat="server">
+                <ItemTemplate>
+                    <a href="?c=<%# Eval("ID") %>">
+                        <%# Eval("Name") %></a> (<%# Eval("Count") %>)<br />
+                </ItemTemplate>
+            </asp:Repeater>
+        </fieldset>
+    </div>
+    <div class="rightContent">
+        <div class="featuredItems" runat="server" id="featuredContainer">
+            <fieldset>
+                <legend>Featured Listings</legend>
+                <asp:Repeater ID="featuredListing" runat="server">
+                    <ItemTemplate>
+                        <div>
+                            <a href="itemdetails.aspx?id=<%# Eval("ID") %>">
+                                <img src="../image.ashx?id=<%# Eval("ImageID") %>" />
+                                <b><%# Eval("Title") %></b></a><br />(Price: <b>$<%# Eval("Price") %></b>)
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </fieldset>
+        </div>
+        <div class="itemListing">
+            <fieldset>
+                <legend>Listings <%= ListingQuery %></legend>
+                <asp:ContentPlaceHolder ID="Listings" runat="server" />
+            </fieldset>
+        </div>
+    </div>
+</asp:Content>

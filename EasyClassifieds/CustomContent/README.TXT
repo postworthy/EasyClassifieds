@@ -1,0 +1,1 @@
+﻿All custom entered content is cached for performance reasons so expect it to take around 30 minutes for changes in these files to be seen within the website.
